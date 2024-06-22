@@ -28,6 +28,7 @@ THE SOFTWARE.
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "config.h"
 
 
 #define LED_UPDATE_INTERVAL 10  // number of ticks from HAL_GetTick
@@ -43,6 +44,9 @@ typedef enum {
 typedef enum {
 	LED_RX = 0, //will also index into array led_state[]
 	LED_TX,
+#ifdef LEDHEARTBEAT_Pin
+	LED_HEARTBEAT,
+#endif
 	LED_MAX
 } led_num_t;
 
@@ -77,6 +81,9 @@ void led_init(
 	led_data_t *leds,
 	void* led_rx_port, uint16_t led_rx_pin, bool led_rx_active_high,
 	void* led_tx_port, uint16_t led_tx_pin, bool led_tx_active_high
+#ifdef LEDHEARTBEAT_Pin
+	,void* led_heartbeat_port, uint16_t led_heartbeat_pin, bool led_com_active_high
+#endif
 	);
 void led_set_mode(led_data_t *leds,led_mode_t mode);
 void led_run_sequence(led_data_t *leds, const led_seq_step_t *sequence, int32_t num_repeat);

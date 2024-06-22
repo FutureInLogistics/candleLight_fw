@@ -71,7 +71,7 @@ static void fdcanusb_setup(USBD_GS_CAN_HandleTypeDef *hcan)
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 	__HAL_RCC_GPIOC_CLK_ENABLE();
 
-	/* LEDs */
+	/* CAN RX LED */
 	HAL_GPIO_WritePin(LEDRX_GPIO_Port, LEDRX_Pin, GPIO_INIT_STATE(LEDRX_Active_High));
 	GPIO_InitStruct.Pin = LEDRX_Pin;
 	GPIO_InitStruct.Mode = LEDRX_Mode;
@@ -79,6 +79,7 @@ static void fdcanusb_setup(USBD_GS_CAN_HandleTypeDef *hcan)
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(LEDRX_GPIO_Port, &GPIO_InitStruct);
 
+	/* CAN TX LED */
 	HAL_GPIO_WritePin(LEDTX_GPIO_Port, LEDTX_Pin, GPIO_INIT_STATE(LEDTX_Active_High));
 	GPIO_InitStruct.Pin = LEDTX_Pin;
 	GPIO_InitStruct.Mode = LEDTX_Mode;
@@ -86,13 +87,21 @@ static void fdcanusb_setup(USBD_GS_CAN_HandleTypeDef *hcan)
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(LEDTX_GPIO_Port, &GPIO_InitStruct);
 
-	/* Power LED Transceiver Pin */
+	/* Power LED Pin */
 	HAL_GPIO_WritePin(LEDPWR_GPIO_Port, LEDPWR_Pin, GPIO_INIT_STATE(LEDPWR_Active_High));
 	GPIO_InitStruct.Pin = LEDPWR_Pin;
 	GPIO_InitStruct.Mode = LEDPWR_Mode;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(LEDPWR_GPIO_Port, &GPIO_InitStruct);
+
+	/* Heartbeat (COM) LED Pin */
+	HAL_GPIO_WritePin(LEDHEARTBEAT_GPIO_Port, LEDHEARTBEAT_Pin, 0);
+	GPIO_InitStruct.Pin = LEDHEARTBEAT_Pin;
+	GPIO_InitStruct.Mode = LEDHEARTBEAT_Mode;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(LEDHEARTBEAT_GPIO_Port, &GPIO_InitStruct);
 
 	/* STB Transceiver Standby Pin */
 	HAL_GPIO_WritePin(nCANSTBY_Port, nCANSTBY_Pin, GPIO_INIT_STATE(nCANSTBY_Active_High));
@@ -102,7 +111,7 @@ static void fdcanusb_setup(USBD_GS_CAN_HandleTypeDef *hcan)
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(nCANSTBY_Port, &GPIO_InitStruct);
 
-	/* SHDN Transceiver Pin */
+	/* SHDN Transceiver Shutdown Pin */
 	HAL_GPIO_WritePin(SHDN_Port, SHDN_Pin, GPIO_INIT_STATE(SHDN_Active_High));
 	GPIO_InitStruct.Pin = SHDN_Pin;
 	GPIO_InitStruct.Mode = SHDN_Mode;
@@ -166,6 +175,11 @@ const struct BoardConfig config = {
 				.port = LEDTX_GPIO_Port,
 				.pin = LEDTX_Pin,
 				.active_high = LEDTX_Active_High,
+			},
+			[LED_HEARTBEAT] = {
+				.port = LEDHEARTBEAT_GPIO_Port,
+				.pin = LEDHEARTBEAT_Pin,
+				.active_high = LEDHEARTBEAT_Active_High,
 			},
 		},
 	}};

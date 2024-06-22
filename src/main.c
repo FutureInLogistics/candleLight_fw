@@ -104,7 +104,11 @@ int main(void)
 
 		led_init(&channel->leds,
 				 led_config[LED_RX].port, led_config[LED_RX].pin, led_config[LED_RX].active_high,
-				 led_config[LED_TX].port, led_config[LED_TX].pin, led_config[LED_TX].active_high);
+				 led_config[LED_TX].port, led_config[LED_TX].pin, led_config[LED_TX].active_high
+#ifdef LEDHEARTBEAT_Pin
+				 , led_config[LED_HEARTBEAT].port, led_config[LED_HEARTBEAT].pin, led_config[LED_HEARTBEAT].active_high
+#endif
+		        );
 
 		/* nice wake-up pattern */
 		for (uint8_t j = 0; j < 10; j++) {

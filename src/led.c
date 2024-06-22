@@ -36,6 +36,9 @@ void led_init(
 	led_data_t *leds,
 	void* led_rx_port, uint16_t led_rx_pin, bool led_rx_active_high,
 	void* led_tx_port, uint16_t led_tx_pin, bool led_tx_active_high
+#ifdef LEDHEARTBEAT_Pin
+	, void* led_heartbeat_port, uint16_t led_heartbeat_pin, bool led_heartbeat_active_high
+#endif
 	) {
 	memset(leds, 0, sizeof(led_data_t));
 	leds->led_state[LED_RX].port = led_rx_port;
@@ -44,6 +47,11 @@ void led_init(
 	leds->led_state[LED_TX].port = led_tx_port;
 	leds->led_state[LED_TX].pin = led_tx_pin;
 	leds->led_state[LED_TX].is_active_high = led_tx_active_high;
+#ifdef LEDHEARTBEAT_Pin
+	leds->led_state[LED_HEARTBEAT].port = led_heartbeat_port;
+	leds->led_state[LED_HEARTBEAT].pin = led_heartbeat_pin;
+	leds->led_state[LED_HEARTBEAT].is_active_high = led_heartbeat_active_high;
+#endif
 }
 
 void led_set_mode(led_data_t *leds,led_mode_t mode)
@@ -96,6 +104,25 @@ static void led_trx_blinker(led_state_t *ledstate, uint32_t now) {
 	}
 }
 
+#ifdef LEDHEARTBEAT_Pin
+static void led_heartbeat(led_state_t *led, uint32_t now)
+{
+	static bool current_state = true;
+	static uint32_t next_update = 0;
+
+	// Check if enough time (1 second) has passed to toggle the LED
+	if (SEQ_ISPASSED(now, next_update))
+	{
+		// Toggle the LED state
+		led_set(led, current_state);
+		current_state ? (current_state = false) : (current_state = true);
+
+		// Set the next toggle time after 1000 ms (1 second)
+		next_update = now + 1000;
+	}
+}
+#endif
+
 static void led_update_normal_mode(led_state_t *led, uint32_t now)
 {
 	if (led->blink_request) {
@@ -146,6 +173,9 @@ void led_update(led_data_t *leds)
 		return;
 	}
 	next_update = now + LED_UPDATE_INTERVAL;
+#ifdef LEDHEARTBEAT_Pin
+	led_heartbeat(&leds->led_state[LED_HEARTBEAT], now);
+#endif
 
 	switch (leds->mode) {
 

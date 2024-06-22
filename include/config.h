@@ -415,14 +415,14 @@ THE SOFTWARE.
 	#define LEDTX_Active_High 		 0
 
 	#define LEDPWR_GPIO_Port 		 GPIOB
-	#define LEDPWR_Pin 				 GPIO_PIN_3
+	#define LEDPWR_Pin 				 GPIO_PIN_5
 	#define LEDPWR_Mode 			 GPIO_MODE_OUTPUT_PP
 	#define LEDPWR_Active_High 		 0
 
-	#define LEDCOM_GPIO_Port 		 GPIOB
-	#define LEDCOM_Pin 				 GPIO_PIN_3
-	#define LEDCOM_Mode 			 GPIO_MODE_OUTPUT_PP
-	#define LEDCOM_Active_High 		 0
+	#define LEDHEARTBEAT_GPIO_Port   GPIOB
+	#define LEDHEARTBEAT_Pin  		 GPIO_PIN_6
+	#define LEDHEARTBEAT_Mode		 GPIO_MODE_OUTPUT_PP
+	#define LEDHEARTBEAT_Active_High 0
 
 	#define TERM_GPIO_Port			 GPIOB
 	#define TERM_Pin				 GPIO_PIN_14
