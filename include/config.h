@@ -382,6 +382,16 @@ THE SOFTWARE.
 	#define NUM_CAN_CHANNEL			 1
 	#define CONFIG_CANFD			 1
 
+	#define LEDRX_GPIO_Port	  		 GPIOA
+	#define LEDRX_Pin		  		 GPIO_PIN_0
+	#define LEDRX_Mode		  		 GPIO_MODE_OUTPUT_OD
+	#define LEDRX_Active_High 		 1
+
+	#define LEDTX_GPIO_Port	  		 GPIOA
+	#define LEDTX_Pin		  		 GPIO_PIN_15
+	#define LEDTX_Mode		 		 GPIO_MODE_OUTPUT_OD
+	#define LEDTX_Active_High 		 1
+
 /*************** STM32G474 ***************/
 #elif defined(BOARD_FDCANUSB)
 	#define USBD_PRODUCT_STRING_FS	 "fdcanusb gs_usb"
