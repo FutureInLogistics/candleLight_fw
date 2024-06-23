@@ -382,6 +382,51 @@ THE SOFTWARE.
 	#define NUM_CAN_CHANNEL			 1
 	#define CONFIG_CANFD			 1
 
+/*************** STM32G474 ***************/
+#elif defined(BOARD_FDCANUSB)
+	#define USBD_PRODUCT_STRING_FS	 "fdcanusb gs_usb"
+	#define USBD_MANUFACTURER_STRING "mjbots"
+	#define DFU_INTERFACE_STRING_FS	 "FDCANUSB firmware upgrade interface"
+
+	#define TIM2_CLOCK_SPEED		 170000000
+
+	#define CAN_CLOCK_SPEED			 80000000
+	#define NUM_CAN_CHANNEL			 1
+	#define CONFIG_CANFD			 1
+
+	#define LEDRX_GPIO_Port 		 GPIOB
+	#define LEDRX_Pin 				 GPIO_PIN_4
+	#define LEDRX_Mode 				 GPIO_MODE_OUTPUT_PP
+	#define LEDRX_Active_High 		 0
+
+	#define LEDTX_GPIO_Port 		 GPIOB
+	#define LEDTX_Pin 				 GPIO_PIN_3
+	#define LEDTX_Mode 				 GPIO_MODE_OUTPUT_PP
+	#define LEDTX_Active_High 		 0
+
+	#define LEDPWR_GPIO_Port 		 GPIOB
+	#define LEDPWR_Pin 				 GPIO_PIN_3
+	#define LEDPWR_Mode 			 GPIO_MODE_OUTPUT_PP
+	#define LEDPWR_Active_High 		 0
+
+	#define LEDCOM_GPIO_Port 		 GPIOB
+	#define LEDCOM_Pin 				 GPIO_PIN_3
+	#define LEDCOM_Mode 			 GPIO_MODE_OUTPUT_PP
+	#define LEDCOM_Active_High 		 0
+
+	#define TERM_GPIO_Port			 GPIOB
+	#define TERM_Pin				 GPIO_PIN_14
+	#define TERM_Mode				 GPIO_MODE_OUTPUT_PP
+	#define TERM_Active_High		 0
+
+	#define nCANSTBY_Port			 GPIOB
+	#define nCANSTBY_Pin			 GPIO_PIN_11 /* control receiver standby, active high */
+	#define nCANSTBY_Active_High	 0
+
+	#define SHDN_Port				 GPIOB
+	#define SHDN_Pin				 GPIO_PIN_15
+	#define SHDN_Mode				 GPIO_MODE_OUTPUT_OD
+	#define SHDN_Active_High		 0
 #else
 	#error please define BOARD
 #endif

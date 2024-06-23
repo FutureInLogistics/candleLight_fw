@@ -226,6 +226,7 @@ set(STM32G4_SOURCES
     include/cmsis/core_cm4.h
     include/cmsis/device/stm32g4xx.h
     include/cmsis/device/stm32g431xx.h
+    include/cmsis/device/stm32g474xx.h
     include/cmsis/device/system_stm32g4xx.h
 )
 
@@ -260,3 +261,8 @@ add_library(STM32_HAL_STM32G431x6 STATIC ${STM32G4_SOURCES})
     target_include_directories(STM32_HAL_STM32G431x6 PUBLIC ${INCLUDE_DIRS} include/stm32g4xx)
     target_compile_options(STM32_HAL_STM32G431x6 PRIVATE ${CPUFLAGS_G4} -Wno-unused-parameter)
     target_compile_definitions(STM32_HAL_STM32G431x6 PUBLIC STM32G431xx HAL_TARGET_PREFIX=stm32g431xx)
+
+add_library(STM32_HAL_STM32G474xE STATIC ${STM32G4_SOURCES})
+    target_include_directories(STM32_HAL_STM32G474xE PUBLIC ${INCLUDE_DIRS} include/stm32g4xx)
+    target_compile_options(STM32_HAL_STM32G474xE PRIVATE ${CPUFLAGS_G4} -Wno-unused-parameter)
+    target_compile_definitions(STM32_HAL_STM32G474xE PUBLIC STM32G474xx HAL_TARGET_PREFIX=stm32g474xx)

@@ -17,3 +17,7 @@
 #ifdef STM32G431xx
 #include <cmsis/device/stm32g431xx.h>
 #endif
+
+#ifdef STM32G474xx
+#include <cmsis/device/stm32g474xx.h>
+#endif
