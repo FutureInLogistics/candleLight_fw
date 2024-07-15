@@ -227,11 +227,16 @@ static uint8_t USBD_GS_CAN_Start(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
 {
 	UNUSED(cfgidx);
 
+	USBD_GS_CAN_HandleTypeDef *hcan = (USBD_GS_CAN_HandleTypeDef *)pdev->pClassData;
+
 	assert_basic(pdev->pClassData);
 	USBD_LL_OpenEP(pdev, GSUSB_ENDPOINT_IN, USBD_EP_TYPE_BULK, CAN_DATA_MAX_PACKET_SIZE);
 	USBD_LL_OpenEP(pdev, GSUSB_ENDPOINT_OUT, USBD_EP_TYPE_BULK, CAN_DATA_MAX_PACKET_SIZE);
 	// USBD_LL_ClearStallEP(pdev, GSUSB_ENDPOINT_OUT);
 
+	hcan->to_host_buf = NULL;
+	hcan->from_host_buf = NULL;
+	
 	return USBD_OK;
 }
 
