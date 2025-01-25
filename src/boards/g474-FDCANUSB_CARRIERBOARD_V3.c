@@ -2,7 +2,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2024 Filics,
+Copyright (c) 2025 Filics,
 			  Igor Knippenberg <knippenberg@filics.eu>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

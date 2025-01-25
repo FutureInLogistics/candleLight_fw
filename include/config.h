@@ -432,11 +432,45 @@ THE SOFTWARE.
 	#define nCANSTBY_Port			 GPIOB
 	#define nCANSTBY_Pin			 GPIO_PIN_11 /* control receiver standby, active high */
 	#define nCANSTBY_Active_High	 0
+#elif defined(BOARD_FDCANUSB_CARRIERBOARD_V3)
+	#define USBD_PRODUCT_STRING_FS	 "fdcanusb gs_usb"
+	#define USBD_MANUFACTURER_STRING "filics"
+	#define DFU_INTERFACE_STRING_FS	 "FDCANUSB firmware upgrade interface"
 
-	#define SHDN_Port				 GPIOB
-	#define SHDN_Pin				 GPIO_PIN_15
-	#define SHDN_Mode				 GPIO_MODE_OUTPUT_OD
-	#define SHDN_Active_High		 0
+	#define TIM2_CLOCK_SPEED		 170000000
+
+	#define CAN_CLOCK_SPEED			 80000000
+	#define NUM_CAN_CHANNEL			 1
+	#define CONFIG_CANFD			 1
+
+	#define LEDRX_GPIO_Port 		 GPIOB
+	#define LEDRX_Pin 				 GPIO_PIN_4
+	#define LEDRX_Mode 				 GPIO_MODE_OUTPUT_PP
+	#define LEDRX_Active_High 		 0
+
+	#define LEDTX_GPIO_Port 		 GPIOB
+	#define LEDTX_Pin 				 GPIO_PIN_3
+	#define LEDTX_Mode 				 GPIO_MODE_OUTPUT_PP
+	#define LEDTX_Active_High 		 0
+
+	#define LEDPWR_GPIO_Port 		 GPIOB
+	#define LEDPWR_Pin 				 GPIO_PIN_5
+	#define LEDPWR_Mode 			 GPIO_MODE_OUTPUT_PP
+	#define LEDPWR_Active_High 		 0
+
+	#define LEDHEARTBEAT_GPIO_Port   GPIOB
+	#define LEDHEARTBEAT_Pin  		 GPIO_PIN_6
+	#define LEDHEARTBEAT_Mode		 GPIO_MODE_OUTPUT_PP
+	#define LEDHEARTBEAT_Active_High 0
+
+	#define TERM_GPIO_Port			 GPIOB
+	#define TERM_Pin				 GPIO_PIN_11
+	#define TERM_Mode				 GPIO_MODE_OUTPUT_PP
+	#define TERM_Active_High		 1
+
+	#define nCANSTBY_Port			 GPIOB
+	#define nCANSTBY_Pin			 GPIO_PIN_14 /* control receiver standby, active high */
+	#define nCANSTBY_Active_High	 0
 #else
 	#error please define BOARD
 #endif
